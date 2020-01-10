@@ -5,7 +5,7 @@ Name: xorg-x11-%{pkgname}
 # IMPORTANT: If package ever gets renamed to something else, remove the Epoch line!
 Epoch: 1
 Version: 7.2
-Release: 10%{?dist}
+Release: 11%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -15,10 +15,7 @@ Source0: ftp://ftp.x.org/pub/individual/app/bdftopcf-1.0.1.tar.bz2
 Source1: ftp://ftp.x.org/pub/individual/app/fonttosfnt-1.0.3.tar.bz2
 Source2: ftp://ftp.x.org/pub/individual/app/mkfontdir-1.0.5.tar.bz2
 Source3: ftp://ftp.x.org/pub/individual/app/mkfontscale-1.0.7.tar.bz2
-Source4: ftp://ftp.x.org/pub/individual/font/font-util-1.0.1.tar.bz2
-
-Patch0: font-util-1.0.1-mapdir-use-datadir-fix.patch
-Patch1: font-util-1.0.1-autoconf-add-with-fontdir-option.patch
+Source4: ftp://ftp.x.org/pub/individual/font/font-util-1.2.0.tar.bz2
 
 BuildRequires: pkgconfig(xfont) pkgconfig(x11)
 BuildRequires: libfontenc-devel >= 0.99.2-2
@@ -47,8 +44,6 @@ populated fonts.
 
 %prep
 %setup -q -c %{name}-%{version} -a1 -a2 -a3 -a4
-%patch0 -p0 -b .font-util-mapdir-use-datadir-fix
-%patch1 -p0 -b .autoconf-add-with-fontdir-option
 
 %build
 # Build all apps
@@ -61,7 +56,7 @@ populated fonts.
             autoconf
             ;;
       esac
-      %configure
+      %configure --with-mapdir=%{_datadir}/X11/fonts/util
       make
       popd
    done
@@ -113,6 +108,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Jun 27 2011 Adam Jackson <ajax@redhat.com> 7.2-11
+- font-util 1.2.0 (#717022)
+
 * Tue Oct 13 2009 Adam Jackson <ajax@redhat.com> 7.2-10
 - mkfontscale 1.0.7
 - mkfontdir 1.0.5
