@@ -1,0 +1,38 @@
+From 19e2cb7c6a3ec2c5b1bc0d24866fa685eef0ee13 Mon Sep 17 00:00:00 2001
+From: Peter Hutterer <peter.hutterer@who-t.net>
+Date: Tue, 21 May 2013 15:50:19 +1000
+Subject: [PATCH mkfontscale] Document -u/-U options in man page
+
+Signed-off-by: Peter Hutterer <peter.hutterer@who-t.net>
+Reviewed-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+---
+ man/mkfontscale.man | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/man/mkfontscale.man b/man/mkfontscale.man
+index 4ed3d7d..4aa88ab 100644
+--- a/man/mkfontscale.man
++++ b/man/mkfontscale.man
+@@ -36,6 +36,8 @@ mkfontscale \- create an index of scalable font files for X
+ .B \-n
+ .I prefix
+ ] [
++.B \-u | \-U
++] [
+ .B \-\-
+ ] [
+ .I directory
+@@ -126,6 +128,10 @@ options.
+ do not scan for fonts, do not write font directory files.  This option
+ is useful when generating encoding directories only.
+ .TP
++.B \-u, \-U
++disable (\fI-u\fP) or enable (\fI-U\fP) indexing of ISO 10646:1 font
++encodings (default: enabled).
++.TP
+ .B \-\-
+ end of options.
+ .SH SEE ALSO
+-- 
+1.8.1.4
+
