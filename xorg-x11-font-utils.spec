@@ -6,7 +6,7 @@ Name: xorg-x11-%{pkgname}
 # IMPORTANT: If package ever gets renamed to something else, remove the Epoch line!
 Epoch: 1
 Version: 7.5
-Release: 18.1%{?dist}
+Release: 20%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -18,6 +18,7 @@ Source3: ftp://ftp.x.org/pub/individual/app/mkfontscale-%{mkfontscale}.tar.bz2
 Source4: ftp://ftp.x.org/pub/individual/font/font-util-1.3.0.tar.bz2
 # helper script used in %post for xorg-x11-fonts
 Source5: xorg-x11-fonts-update-dirs
+Source6: xorg-x11-fonts-update-dirs.1
 
 Patch2: mkfontscale-examine-all-encodings.patch
 Patch3: mkfontscale-man-page-additions.patch
@@ -83,6 +84,9 @@ rm -rf $RPM_BUILD_ROOT
 install -m 744 %{SOURCE5} ${RPM_BUILD_ROOT}%{_bindir}/xorg-x11-fonts-update-dirs
 sed -i "s:@DATADIR@:%{_datadir}:" ${RPM_BUILD_ROOT}%{_bindir}/xorg-x11-fonts-update-dirs
 
+install -d ${RPM_BUILD_ROOT}%{_mandir}/man1/
+install -m 644 -p %{SOURCE6} ${RPM_BUILD_ROOT}%{_mandir}/man1/xorg-x11-fonts-update-dirs.1
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -107,8 +111,15 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/mkfontdir.1*
 %{_mandir}/man1/mkfontscale.1*
 %{_mandir}/man1/ucs2any.1*
+%{_mandir}/man1/xorg-x11-fonts-update-dirs.1*
 
 %changelog
+* Tue May 12 2015 Peter Robinson <pbrobinson@redhat.com> 1:7.5-20
+- rebuild
+
+* Wed Aug 06 2014 Peter Hutterer <peter.hutterer@redhat.com> 1:7.5-19
+- Add a man page for xorg-x11-fonts-update-dirs (#948841)
+
 * Wed Feb 12 2014 Adam Jackson <ajax@redhat.com> 7.5-18.1
 - Mass rebuild
 
