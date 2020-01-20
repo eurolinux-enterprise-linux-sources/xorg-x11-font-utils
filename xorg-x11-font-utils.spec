@@ -6,7 +6,7 @@ Name: xorg-x11-%{pkgname}
 # IMPORTANT: If package ever gets renamed to something else, remove the Epoch line!
 Epoch: 1
 Version: 7.5
-Release: 17%{?dist}
+Release: 18.1%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
@@ -109,6 +109,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/ucs2any.1*
 
 %changelog
+* Wed Feb 12 2014 Adam Jackson <ajax@redhat.com> 7.5-18.1
+- Mass rebuild
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1:7.5-18
+- Mass rebuild 2013-12-27
+
 * Thu Jul 04 2013 Peter Hutterer <peter.hutterer@redhat.com> 1:7.5-17
 - Ok, this time fix the right changelog date. Well, the wrong one, I mean.
  
